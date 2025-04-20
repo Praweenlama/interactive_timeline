@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:interactive_timeline/pages/home.dart';
+import 'package:interactive_timeline/pages/home/home.dart';
 
 void main() {
   runApp(const MainApp());
