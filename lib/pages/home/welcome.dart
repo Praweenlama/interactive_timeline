@@ -5,11 +5,9 @@ class WelcomeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Welcome to the Responsive Timeline Project',
-        style: TextStyle(color: Colors.blue),
-      ),
+    return Text(
+      'Welcome to the Responsive Timeline Project',
+      style: TextStyle(color: Colors.blue),
     );
   }
 }

@@ -16,73 +16,75 @@ class _InputTextState extends State<InputText> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          SizedBox(height: 20), // Add spacing at the top
-          TextField(
-            controller: titleController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Title',
-              hintText: 'Enter the title...',
+    return Material(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            SizedBox(height: 20), // Add spacing at the top
+            TextField(
+              controller: titleController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Title',
+                hintText: 'Enter the title...',
+              ),
             ),
-          ),
-          SizedBox(height: 16), // Add spacing between fields
-          TextField(
-            controller: descriptionController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Description',
-              hintText: 'Enter the description...',
+            SizedBox(height: 16), // Add spacing between fields
+            TextField(
+              controller: descriptionController,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Description',
+                hintText: 'Enter the description...',
+              ),
+              maxLines: 5, // Allow multiline input for description
             ),
-            maxLines: 3, // Allow multiline input for description
-          ),
-          SizedBox(height: 16), // Add spacing between fields
-          Row(
-            children: [
+            SizedBox(height: 16), // Add spacing between fields
+            Row(
+              children: [
+                Text(
+                  selectedDate == null
+                      ? 'No date selected'
+                      : 'Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate!)}',
+                ),
+                SizedBox(width: 16),
+                TextButton(
+                  onPressed: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2100),
+                    );
+                    if (pickedDate != null && pickedDate != selectedDate) {
+                      setState(() {
+                        selectedDate = pickedDate;
+                      });
+                    }
+                  },
+                  child: Text('Select Date'),
+                ),
+              ],
+            ),
+            SizedBox(height: 16), // Add spacing before the button
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  displayData =
+                      'Title: ${titleController.text}\nDescription: ${descriptionController.text}\nDate: ${selectedDate != null ? DateFormat('yyyy-MM-dd').format(selectedDate!) : 'No date selected'}';
+                });
+              },
+              child: Text('Show Data'),
+            ),
+            SizedBox(height: 16), // Add spacing before displaying data
+            if (displayData != null)
               Text(
-                selectedDate == null
-                    ? 'No date selected'
-                    : 'Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate!)}',
+                displayData!,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              SizedBox(width: 16),
-              TextButton(
-                onPressed: () async {
-                  DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2100),
-                  );
-                  if (pickedDate != null && pickedDate != selectedDate) {
-                    setState(() {
-                      selectedDate = pickedDate;
-                    });
-                  }
-                },
-                child: Text('Select Date'),
-              ),
-            ],
-          ),
-          SizedBox(height: 16), // Add spacing before the button
-          ElevatedButton(
-            onPressed: () {
-              setState(() {
-                displayData =
-                    'Title: ${titleController.text}\nDescription: ${descriptionController.text}\nDate: ${selectedDate != null ? DateFormat('yyyy-MM-dd').format(selectedDate!) : 'No date selected'}';
-              });
-            },
-            child: Text('Show Data'),
-          ),
-          SizedBox(height: 16), // Add spacing before displaying data
-          if (displayData != null)
-            Text(
-              displayData!,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
