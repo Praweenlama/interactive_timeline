@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 
 class MyButton extends StatefulWidget {
   final String buttonText;
-  final VoidCallback onPressed;
-  const MyButton({
-    super.key,
-    required this.buttonText,
-    required this.onPressed,
-  });
+  final VoidCallback? onPressed;
+  const MyButton({super.key, required this.buttonText, this.onPressed});
 
   @override
   State<MyButton> createState() => _MyButtonState();

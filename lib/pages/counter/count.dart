@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Counter with ChangeNotifier {
-  int _count = 1;
+class CounterModel extends ChangeNotifier {
+  int count;
 
-  int get count => _count;
+  CounterModel({required this.count});
+  // CounterNotifier() : super(0); // Initialize with 0
 
   void increment() {
-    _count++;
+    count++;
     notifyListeners(); // notifies widgets to rebuild
   }
 
   void decrement() {
-    _count--;
+    count--;
     notifyListeners(); // notifies widgets to rebuild
   }
 }

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:interactive_timeline/pages/counter/count.dart';
+// import 'package:interactive_timeline/pages/counter/count.dart';
 import 'package:interactive_timeline/pages/home/home.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => Counter(),
-      child: const MainApp(),
-    ),
+    const ProviderScope(child: MainApp()),
+    // ChangeNotifierProvider(
+    //   create: (context) => Counter(),
+    //   child: const MainApp(),
+    // ),
   );
 }
 
