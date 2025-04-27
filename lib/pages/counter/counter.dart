@@ -17,7 +17,7 @@ class MyCounter extends ConsumerWidget {
           onPressed: () {
             // counter.increment();
             ref
-                .read(riverpod)
+                .read(riverpod.notifier)
                 .increment(); // Access the state and call increment
           },
           child: Text("Increment Counter"),
@@ -27,7 +27,7 @@ class MyCounter extends ConsumerWidget {
           onPressed: () {
             // counter.decrement();
             ref
-                .read(riverpod)
+                .read(riverpod.notifier)
                 .decrement(); // Access the state and call decrement
           },
           child: Text("Decrement Counter"),
@@ -35,7 +35,7 @@ class MyCounter extends ConsumerWidget {
         SizedBox(width: 20),
         Text(
           // counter using the riverpod package
-          "Counter: ${ref.watch(riverpod).count.toString()}",
+          "Counter: ${ref.watch(riverpod)}",
           style: TextStyle(
             color: Colors.black,
             decoration: TextDecoration.none,

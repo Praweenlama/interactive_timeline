@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:interactive_timeline/pages/counter/counter.dart';
 import 'package:interactive_timeline/pages/home/welcome.dart';
 import 'package:interactive_timeline/widgets/button/button.dart';
-import 'package:interactive_timeline/widgets/text/textInput.dart';
+import 'package:interactive_timeline/widgets/text/text_input.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
